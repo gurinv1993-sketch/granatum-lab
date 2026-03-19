@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
+</head>
+<body>
+<nav>
+    {% for item in main_menu %}
+    {# если пространства имен есть они совпадают или совпадают имена - выводим пункт меню текстом #}
+        {% if item.namespace and request.resolver_match.namespace == item.namespace or request.resolver_match.url_name == item.name %}
+            <span style="font-weight: bold; color: #333;">{{ item.label }}</span>
+        {% else %}
+            <a href="{% url item.name %}">{{ item.label }}</a>
+        {# в остальных случаях - выводим пункт меню ссылкой #}
+        {% endif %}
+        {% if not forloop.last %} | {% endif %}
+    {% endfor %}
+</nav>
+{% block content %} {% endblock %}
+</body>
+</html>

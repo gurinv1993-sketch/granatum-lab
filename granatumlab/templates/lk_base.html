@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<nav>
+    {% for item in main_menu_lk %}
+    {# если совпадают имена - выводим пункт меню текстом #}
+        {% if request.resolver_match.view_name == item.name %}
+            <span style="font-weight: bold; color: #333;">{{ item.label }}</span>
+        {% else %}
+            <a href="{% url item.name %}">{{ item.label }}</a>
+        {# в остальных случаях - выводим пункт меню ссылкой #}
+        {% endif %}
+        {% if not forloop.last %} | {% endif %}
+    {% endfor %}
+</nav>
+{% block lk_content %} {% endblock %}
+{% endblock %}

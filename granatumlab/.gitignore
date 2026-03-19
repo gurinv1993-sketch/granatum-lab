@@ -1,0 +1,15 @@
+text
+# Окружение
+venv/
+ENV/
+env/
+
+# База
+*.sqlite3
+
+# Временные файлы
+__pycache__/
+*.py[cod]
+
+# Настройки PyCharm
+.idea/
